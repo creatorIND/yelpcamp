@@ -25,7 +25,7 @@
 					<li class="home-nav__item">
 						<a href="/spots" class="home-nav__link">All Spots</a>
 					</li>
-					<% if(currentUser === undefined) { %>
+					<% if(typeof currentUser === "undefined") { %>
 					<li class="home-nav__item">
 						<a href="/login" class="home-nav__link">Login</a>
 					</li>

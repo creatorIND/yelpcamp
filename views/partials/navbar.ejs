@@ -21,7 +21,7 @@
 				<li class="navigation__item">
 					<a href="/spots" class="navigation__link">All Spots</a>
 				</li>
-				<% if(currentUser === undefined) { %>
+				<% if(typeof currentUser === "undefined") { %>
 				<li class="navigation__item">
 					<a href="/spots/new" class="navigation__link"
 						>Add New Spot</a
@@ -48,7 +48,7 @@
 			</ul>
 		</nav>
 		<div class="navigation__button-links">
-			<% if(currentUser === undefined) { %>
+			<% if(typeof currentUser === "undefined") { %>
 			<a href="/register" class="btn btn--white">Register</a>
 			<% } else { %>
 			<a href="/spots/new" class="btn btn--white">Add New Spot</a>

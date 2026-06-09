@@ -27,7 +27,7 @@
 							fill="white" />
 					</svg> </span
 			></a>
-			<% if(currentUser && spot.author.equals(currentUser._id)) { %>
+			<% if(typeof currentUser !== "undefined" && currentUser && spot.author.equals(currentUser._id)) { %>
 			<a href="/spots/<%= spot._id %>/edit" class="btn btn--blue-light"
 				>Edit</a
 			>
@@ -156,7 +156,7 @@
 					<%= review.author.username %>
 				</div>
 				<div class="reviews__body"><%= review.body %></div>
-				<% if(currentUser && review.author.equals(currentUser._id)) { %>
+				<% if(typeof currentUser !== "undefined" && currentUser && review.author.equals(currentUser._id)) { %>
 				<form
 					class="u-right-text"
 					action="/spots/<%= spot._id %>/reviews/<%= review._id %>?_method=DELETE"
