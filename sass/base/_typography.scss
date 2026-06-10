@@ -27,7 +27,7 @@ select {
 	&:hover,
 	&:active {
 		color: $color-secondary-light;
-		text-decoration: underline solid;
+		text-decoration-style: solid;
 	}
 }
 
