@@ -2,21 +2,21 @@
 <main class="spots">
 	<section class="spots__header">
 		<div class="spots__map" id="clusterMap"></div>
-		<div class="heading-primary">All Spots</div>
-		<form class="form" method="get" action="">
-			<div class="form__group">
-				<label class="form__label" for="country"
-					>Filter by Location:</label
-				>
-				<input
-					class="form__input"
-					type="text"
-					placeholder="Enter Location" />
-			</div>
-			<div class="form__group u-justify-content-start">
-				<button class="btn">Go</button>
-			</div>
+		<div id="scrollAfterSearch" class="heading-primary">All Spots</div>
+		<form class="form" method="get" action="/spots#scrollAfterSearch">
+			<input
+				class="form__input"
+				type="search"
+                name="search"
+				placeholder="Filter by spot name or location"
+                value="<%= search || '' %>"
+                aria-label="Search"
+            />
+			<button type="submit" class="btn">Search</button>
 		</form>
+        <% if(search && spots.length > 0) { %>
+            <div class="spots__search-text">Showing <%= spots.length %> search result(s) for <span>'<%= search %>'</span>...</div>
+        <% } %>
 	</section>
 	<section class="spots__list">
 		<% for(let spot of spots) { %>
@@ -46,7 +46,29 @@
 			</div>
 		</a>
 		<% } %>
+        <% if(search && spots.length === 0) { %>
+            <div class="spots__empty">
+                <img src="/assets/no-matches.png" alt="Sad face">
+                <div class="spots__empty-main">
+                    <p class="heading-primary heading-primary--small">No spots matching <span>'<%= search %>'</span></p>
+                    <div class="spots__empty-links">
+                        <a href="/spots/new" class="link">Add New Spot</a>
+                        <a href="/spots" class="link">Clear Filters</a>
+                    </div>
+                </div>
+            </div>
+        <% } %>
 	</section>
+     <% if(search && spots.length > 0) { %>
+        <div class="spots__search-end">
+            <div>
+                <div class="line"></div>
+                <span>You've reached the end of the list.</span>
+                <div class="line"></div>
+            </div>
+            <a href="/spots" class="btn">Clear Filters</a>
+        </div>
+    <% } %>
 </main>
 
 <script>

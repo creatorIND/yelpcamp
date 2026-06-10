@@ -4,8 +4,19 @@ const { cloudinary } = require("../cloudinary");
 const { geocodeLocation } = require("../utils/geocoding");
 
 module.exports.showAllSpots = async (req, res) => {
-	const spots = await Spot.find({});
-	res.render("spots/all-spots", { spots, title: "All Spots" });
+	const { search } = req.query;
+	let spots;
+
+	if (search) {
+		spots = await Spot.find(
+			{ $text: { $search: search } },
+			{ score: { $meta: "textScore" } }
+		).sort({ score: { $meta: "textScore" } });
+	} else {
+		spots = await Spot.find({});
+	}
+
+	res.render("spots/all-spots", { spots, search, title: "All Spots" });
 };
 
 module.exports.renderNewForm = (req, res) => {

@@ -34,9 +34,12 @@
 	& .form {
 		justify-content: flex-start;
 
-		&__group {
-			flex-basis: 45%;
-			align-items: flex-start;
+		input {
+			width: 45%;
+
+			@include respond(phone) {
+				flex: 1;
+			}
 		}
 	}
 
@@ -143,6 +146,108 @@
 
 		@include respond(tab-land) {
 			font-size: 1.2rem;
+		}
+	}
+
+	&__search-text {
+		margin-top: 2rem;
+
+		@include respond(tab-port) {
+			font-size: 2rem;
+		}
+
+		span {
+			font-weight: bold;
+			font-style: italic;
+		}
+	}
+
+	&__empty {
+		display: flex;
+		align-items: center;
+
+		@include respond(small-phone) {
+			flex-direction: column;
+			gap: 3rem;
+		}
+
+		img {
+			height: 300px;
+			width: auto;
+
+			@include respond(tab-port) {
+				height: 200px;
+			}
+		}
+
+		&-main {
+			display: flex;
+			flex-direction: column;
+			gap: 4rem;
+
+			@include respond(small-phone) {
+				gap: 3rem;
+			}
+		}
+
+		&-links {
+			display: flex;
+			gap: 3rem;
+
+			@include respond(phone) {
+				flex-direction: column;
+				gap: 2rem;
+			}
+
+			@include respond(small-phone) {
+				flex-direction: row;
+			}
+
+			a {
+				color: $color-blue;
+			}
+		}
+	}
+
+	&__search-end {
+		width: 100%;
+		padding: 0 12rem;
+		margin-top: 6rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+
+		@include respond(tab-land) {
+			padding: 0 8rem;
+		}
+
+		@include respond(tab-port) {
+			padding: 0 4rem;
+			margin-top: 2rem;
+		}
+
+		& > div {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			text-align: center;
+			gap: 2rem;
+
+			.line {
+				flex-grow: 1;
+				height: 1px;
+				background-color: $color-ulgrey;
+			}
+		}
+
+		.btn {
+			background-color: $color-grey;
+
+			&:hover,
+			&:active {
+				background-color: darken($color-grey, 5%);
+			}
 		}
 	}
 }

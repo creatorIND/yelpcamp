@@ -63,4 +63,17 @@ spotSchema.post("findOneAndDelete", async function (doc) {
 	}
 });
 
+spotSchema.index(
+	{
+		name: "text",
+		location: "text",
+	},
+	{
+		weights: {
+			name: 3,
+			location: 1,
+		},
+	}
+);
+
 module.exports = mongoose.model("Spot", spotSchema);
